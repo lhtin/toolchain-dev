@@ -14,8 +14,8 @@ user_id=$(id -u)
 group_id=$(id -g)
 
 create_cmd="$BASEDIR/create-user.sh $user_id docker $group_id docker-group /home/docker"
-verify_cmd="python3 -u $BASEDIR/verify-riscv.py --jobs $JOBS --log-dir $LOG_DIR"
+verify_cmd="runuser -u docker python3 -u $BASEDIR/verify-riscv.py --jobs $JOBS --log-dir $LOG_DIR"
 
 python3 -u $BASEDIR/docker/run.py --image-name gcc-dev-env \
   --volume $HOME $GCC_DEV_ENV_DIR \
-  --cmd "$create_cmd && su docker && $verify_cmd"
+  --cmd "$create_cmd && $verify_cmd"

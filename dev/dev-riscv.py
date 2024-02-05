@@ -82,7 +82,7 @@ test_cmd = f'PATH={args.sim_path}:$PATH make -C {build_dir} report-{args.libc} -
 jobs = Jobs(build_dir)
 
 if args.only_test:
-  jobs.add_job("test", test_cmd)
+  jobs.add_job("test", f"rm -rf {build_dir}/stamps/check-gcc-linux && {test_cmd}")
 else:
   jobs.add_job("@clean", clean_cmd)
   jobs.add_job("config", config_cmd, ["clean"])

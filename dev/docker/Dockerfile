@@ -23,4 +23,8 @@ RUN sudo dpkg-reconfigure -fnoninteractive tzdata
 RUN userdel -r ubuntu || true
 RUN echo "root:1" | chpasswd
 
+RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3 config set global.break-system-packages true
+RUN pip3 install pyelftools
+
 COPY home my-home

@@ -19,7 +19,13 @@ then
   exit 1
 fi
 
-python3 $BASEDIR/docker/run.py --image-name gcc-dev-env --ssh-port $PORT --volume $HOME $GCC_DEV_ENV_DIR
+user_id=$(id -u)
+group_id=$(id -g)
+
+python3 $BASEDIR/docker/run.py --image-name gcc-dev-env \
+  --ssh-port $PORT \
+  --volume $HOME $GCC_DEV_ENV_DIR \
+  --cmd "$BASEDIR/create-user.sh $user_id docker $group_id docker-group /home/docker"
 docker_result=$?
 
 if [ $docker_result -eq 0 ]

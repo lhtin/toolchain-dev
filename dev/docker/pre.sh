@@ -2,7 +2,7 @@
 
 set -ex
 
-rm -rf home && mkdir -p home
+rm -rf home && mkdir -p home/.config/pip
 
 unzip -o common/ohmyzsh-master.zip
 mv ohmyzsh-master home/.oh-my-zsh
@@ -19,8 +19,8 @@ mv gdb-python home/.gdb-python
 cp common/config/.vimrc \
    common/config/.gdbinit \
    common/config/.gitconfig \
-   common/create-user.sh \
    home/
+cp common/config/pip.conf home/.config/pip/
 
 cp home/.oh-my-zsh/templates/zshrc.zsh-template home/.zshrc
 sed -i -E "s/plugins=\(git\)/plugins=\(git zsh-autosuggestions zsh-syntax-highlighting\)/" home/.zshrc

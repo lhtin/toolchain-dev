@@ -23,6 +23,7 @@ def run():
   parser.add_argument('--volume', nargs="+", help="Volume map when run docker, like --volume path1 path2 to --volume path1:path1 --volume path2:paht2")
   parser.add_argument('--user-id', type=str, required=False)
   parser.add_argument('--group-id', type=str, required=False)
+  parser.add_argument('--cmd', type=str, required=False)
   args = parser.parse_args()
   init_logger("run.log")
 
@@ -36,10 +37,10 @@ def run():
   if args.volume:
     paths = map(lambda p: p + ":" + p, map(lambda p: os.path.abspath(p), args.volume))
     volume_map = "--volume " + (" --volume ".join(paths))
-#     paths = map(lambda p: f"type=bind,source={p},target={p}", map(lambda p: os.path.abspath(p), args.volume))
-#     volume_map = "--mount " + (" --mount ".join(paths))
-
-  create_cmd = f"/my-home/create-user.sh {user_id} {user_name} {group_id} {group_name} {home_dir}"
+  if args.cmd:
+    create_cmd = args.cmd
+  else:
+    create_cmd = f"/my-home/create-user.sh {user_id} {user_name} {group_id} {group_name} {home_dir}"
   docker_run_cmd = f"docker run --privileged --detach --publish 127.0.0.1:{args.ssh_port}:22/tcp {volume_map} {args.image_name} {create_cmd}"
 
   if args.sudo:

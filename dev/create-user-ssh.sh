@@ -20,3 +20,7 @@ mkdir -p $DOCKER_HOME_DIR
 chown $DOCKER_USER_NAME:$DOCKER_GROUP_NAME $DOCKER_HOME_DIR
 
 runuser -u $DOCKER_USER_NAME -- cp -rf /my-home/.* $DOCKER_HOME_DIR
+
+# start ssh server
+runuser -u $DOCKER_USER_NAME -- ssh-keygen -A
+runuser -u $DOCKER_USER_NAME -- echo "1" | sudo -S sshd -D -e

@@ -18,7 +18,7 @@ def init_logger(log_path):
 def run():
   parser = argparse.ArgumentParser(description="Build docker image")
   parser.add_argument('--image-name', type=str, required=True, help="the real image name will suffix with the use name")
-  parser.add_argument('--ssh-port', type=str, required=True, help="The ssh port to connect the container")
+  parser.add_argument('--ssh-port', type=str, required=False, help="The ssh port to connect the container")
   parser.add_argument('--sudo', action="store_true", default=False, help="Use sudo to run docker?")
   parser.add_argument('--volume', nargs="+", help="Volume map when run docker, like --volume path1 path2 to --volume path1:path1 --volume path2:paht2")
   parser.add_argument('--user-id', type=str, required=False)
@@ -38,10 +38,13 @@ def run():
     paths = map(lambda p: p + ":" + p, map(lambda p: os.path.abspath(p), args.volume))
     volume_map = "--volume " + (" --volume ".join(paths))
   if args.cmd:
-    create_cmd = args.cmd
+    cmd = args.cmd
   else:
-    create_cmd = f"/my-home/create-user.sh {user_id} {user_name} {group_id} {group_name} {home_dir}"
-  docker_run_cmd = f"docker run --privileged --detach --publish 127.0.0.1:{args.ssh_port}:22/tcp {volume_map} {args.image_name} {create_cmd}"
+    cmd = f"/my-home/create-user-ssh.sh {user_id} {user_name} {group_id} {group_name} {home_dir}"
+  if args.ssh_port:
+    docker_run_cmd = f'docker run --privileged --detach --publish 127.0.0.1:{args.ssh_port}:22/tcp {volume_map} {args.image_name} bash -c "{cmd}"'
+  else:
+    docker_run_cmd = f'docker run --privileged {volume_map} {args.image_name} bash -c "{cmd}"'
 
   if args.sudo:
     docker_run_cmd = "sudo " + docker_run_cmd

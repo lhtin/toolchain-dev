@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+set -xe
 
 JOBS=80
 BASEDIR=$(readlink -f $(dirname "$0"))
@@ -13,9 +13,11 @@ docker load < $GCC_DEV_ENV_DIR/gcc-dev-env.tar
 user_id=$(id -u)
 group_id=$(id -g)
 
-create_cmd="$BASEDIR/create-user.sh $user_id docker $group_id docker-group /home/docker"
-verify_cmd="runuser -u docker python3 -u $BASEDIR/verify-riscv.py --jobs $JOBS --log-dir $LOG_DIR"
+run_verify_cmd="$BASEDIR/run-verify.sh $user_id docker $group_id docker-group /home/docker $BASEDIR/verify-riscv.py $LOG_DIR $JOBS"
 
-python3 -u $BASEDIR/docker/run.py --image-name gcc-dev-env \
-  --volume $HOME $GCC_DEV_ENV_DIR \
-  --cmd "$create_cmd && $verify_cmd"
+docker run -it --privileged \
+  --volume $HOME:$HOME \
+  --volume $GCC_DEV_ENV_DIR:$GCC_DEV_ENV_DIR \
+  gcc-dev-env \
+  bash -c "$run_verify_cmd"
+

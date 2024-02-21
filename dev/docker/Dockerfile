@@ -16,8 +16,8 @@ RUN apt-get install -y zsh wget sudo vim openssh-server openssh-client htop gdb 
 RUN locale-gen en_US.UTF-8
 
 # set timezone
-RUN sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN sudo dpkg-reconfigure -fnoninteractive tzdata
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN dpkg-reconfigure -fnoninteractive tzdata
 
 # 23.10 will add default no-root user ubuntu which use 1000 user id, remove the default user
 RUN userdel -r ubuntu || true
@@ -28,3 +28,6 @@ RUN pip3 config set global.break-system-packages true
 RUN pip3 install pyelftools
 
 COPY home my-home
+
+# init model env
+RUN bash -i /my-home/conda-init.sh

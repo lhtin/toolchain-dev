@@ -16,9 +16,17 @@ mv zsh-autosuggestions-master home/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 unzip -o common/gdb-python.zip
 mv gdb-python home/.gdb-python
 
-cp common/config/.vimrc \
+unzip -o common/map.zip
+mv map home/map
+
+unzip -o common/riscv-perf-model.zip
+mv riscv-perf-model home/riscv-perf-model
+
+cp -rf common/config/.vimrc \
    common/config/.gdbinit \
    common/config/.gitconfig \
+   common/create-ssh-user.sh \
+   common/conda-init.sh \
    home/
 cp common/config/pip.conf home/.config/pip/
 

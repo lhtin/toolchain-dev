@@ -12,7 +12,7 @@ RUN apt-get install -y autoconf automake autotools-dev curl python3 python3-pip 
                        libexpat-dev ninja-build git cmake libglib2.0-dev libpixman-1-dev \
                        expect device-tree-compiler dejagnu libgfortran5 gfortran
 RUN apt-get install -y zsh wget sudo vim openssh-server openssh-client htop gdb locales apt-utils \
-                       dialog zip
+                       dialog zip repo
 RUN locale-gen en_US.UTF-8
 
 # set timezone

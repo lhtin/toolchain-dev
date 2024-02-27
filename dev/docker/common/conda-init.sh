@@ -5,12 +5,12 @@ set -ex
 MY_HOME=/docker-home
 
 # build qemu
-mkdir -p $MY_HOME/apps
-cd $MY_HOME/qemu-8.2.1
-mkdir build && cd build
-../configure --prefix=$MY_HOME/apps --target-list=riscv64-softmmu,riscv64-linux-user --python=python3 --enable-debug --enable-plugins
-make -j
-make install -j
+#mkdir -p $MY_HOME/apps
+#cd $MY_HOME/qemu-8.2.1
+#mkdir build && cd build
+#../configure --prefix=$MY_HOME/apps --target-list=riscv64-softmmu,riscv64-linux-user --python=python3 --enable-debug --enable-plugins
+#make -j
+#make install -j
 
 #rm -rf $MY_HOME/qemu-8.2.1
 

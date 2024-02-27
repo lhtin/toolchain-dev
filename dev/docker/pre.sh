@@ -41,11 +41,10 @@ mv map home/map
 unzip -o common/riscv-perf-model.zip
 mv riscv-perf-model home/riscv-perf-model
 
-if [ ! -f qemu-8.2.1.tar.xz ]
-then
-wget https://download.qemu.org/qemu-8.2.1.tar.xz
-fi
-
-tar xvJf qemu-8.2.1.tar.xz
-mv qemu-8.2.1 home/qemu-8.2.1
+#if [ ! -f qemu-8.2.1.tar.xz ]
+#then
+#wget https://download.qemu.org/qemu-8.2.1.tar.xz
+#fi
+#tar xvJf qemu-8.2.1.tar.xz
+#mv qemu-8.2.1 home/qemu-8.2.1
 

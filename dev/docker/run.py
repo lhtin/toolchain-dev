@@ -40,7 +40,7 @@ def run():
   if args.cmd:
     create_cmd = args.cmd
   else:
-    create_cmd = f"/my-home/create-ssh-user.sh {user_id} {user_name} {group_id} {group_name} {home_dir}"
+    create_cmd = f"/docker-home/create-ssh-user.sh {user_id} {user_name} {group_id} {group_name} {home_dir}"
   docker_run_cmd = f"docker run --privileged --detach --publish 127.0.0.1:{args.ssh_port}:22/tcp {volume_map} {args.image_name} {create_cmd}"
 
   if args.sudo:

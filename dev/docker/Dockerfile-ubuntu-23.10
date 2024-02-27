@@ -1,4 +1,3 @@
-# x86
 FROM ubuntu:23.10
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
 COPY tsinghua-ubuntu-23.10-sources.list /etc/apt/sources.list
@@ -27,7 +26,7 @@ RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip3 config set global.break-system-packages true
 RUN pip3 install pyelftools
 
-COPY home my-home
+COPY home docker-home
 
 # init model env
-RUN bash -i /my-home/conda-init.sh
+RUN bash -i /docker-home/conda-init.sh

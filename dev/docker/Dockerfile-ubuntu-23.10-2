@@ -1,0 +1,2 @@
+FROM model-docker-env
+RUN sudo apt-get install -y valgrind

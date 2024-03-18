@@ -28,8 +28,8 @@ conda install -y -c conda-forge jq yq
 cd $MY_HOME/map
 ./scripts/create_conda_env.sh sparta dev
 conda activate sparta
-cd sparta && mkdir release && cd release
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cd sparta && mkdir debug && cd debug
+cmake -DCMAKE_BUILD_TYPE=Debug ..
 make -j
 cmake --install . --prefix $CONDA_PREFIX
 
@@ -38,8 +38,8 @@ cmake --install . --prefix $CONDA_PREFIX
 # build riscv-perf-model
 cd $MY_HOME/riscv-perf-model
 conda activate sparta
-mkdir release && cd release
-cmake .. -DCMAKE_BUILD_TYPE=Release
+mkdir debug && cd debug
+cmake .. -DCMAKE_BUILD_TYPE=Debug
 make olympia -j
 ./olympia ../traces/dhry_riscv.zstf
 

@@ -1,2 +1,3 @@
 FROM model-docker-env
 RUN sudo apt-get install -y valgrind
+RUN pip3 install --root-user-action=ignore filecheck lit

@@ -33,6 +33,7 @@ cp common/config/pip.conf home/.config/pip/
 cp home/.oh-my-zsh/templates/zshrc.zsh-template home/.zshrc
 sed -i -E "s/plugins=\(git\)/plugins=\(git zsh-autosuggestions zsh-syntax-highlighting\)/" home/.zshrc
 sed -i '3s/^/export PATH=\$HOME\/apps\/bin\:\$PATH\n/' home/.zshrc
+sed -i '1 i ZSH_DISABLE_COMPFIX=true' home/.zshrc
 
 # others projects
 unzip -o common/map.zip

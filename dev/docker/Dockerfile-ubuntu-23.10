@@ -29,4 +29,4 @@ RUN pip3 install pyelftools
 COPY home docker-home
 
 # init model env
-RUN bash -i /docker-home/conda-init.sh
+#RUN bash -i /docker-home/conda-init.sh

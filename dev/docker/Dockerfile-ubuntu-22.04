@@ -1,6 +1,6 @@
-FROM ubuntu:23.10
+FROM ubuntu:22.04
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-COPY tsinghua-ubuntu-23.10-sources.list /etc/apt/sources.list
+COPY tsinghua-ubuntu-22.04-sources.list /etc/apt/sources.list
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
@@ -32,8 +32,6 @@ COPY home docker-home
 #RUN bash -i /docker-home/conda-init.sh
 
 RUN sudo apt-get install -y valgrind
-RUN pip3 install --root-user-action=ignore filecheck lit pyyaml
-COPY home/create-ssh-user.sh docker-home/
-COPY home/.zshrc docker-home/
+COPY common/create-ssh-user.sh docker-home/
 RUN chmod -R o+r+w /docker-home
 

@@ -18,5 +18,6 @@ echo "$DOCKER_USER_NAME:1" | chpasswd
 #runuser -u $DOCKER_USER_NAME -- $DOCKER_HOME_DIR/miniconda3/bin/conda init zsh
 
 # start ssh server
-runuser -u $DOCKER_USER_NAME -- ssh-keygen -A
-runuser -u $DOCKER_USER_NAME -- echo "1" | sudo -S sshd -D -e
+ssh-keygen -A
+mkdir /run/sshd
+sudo -S /usr/sbin/sshd -D -e

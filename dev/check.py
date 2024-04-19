@@ -30,7 +30,8 @@ for tool in args.tool_list:
     run(check_cmd)
   else:
     print(f"Cannot find summary {sum_file}")
+    sys.exit(1)
 
 if has_fail:
   print("Finish with FAILED.")
-  sys.exit (1)
+  sys.exit(1)

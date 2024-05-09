@@ -10,6 +10,14 @@ RUN apt-get install -y autoconf automake autotools-dev curl python3 python3-pip 
                        expect device-tree-compiler dejagnu libgfortran5 gfortran
 RUN apt-get install -y zsh wget sudo vim openssh-server openssh-client htop gdb locales apt-utils \
                        dialog zip repo clang-format valgrind universal-ctags linux-tools-generic
+# JDK
+RUN apt-get install -y libfreetype6-dev \
+                       libcups2-dev \
+                       libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev \
+                       libasound2-dev \
+                       libffi-dev \
+                       libfontconfig1-dev \
+
 RUN locale-gen en_US.UTF-8
 
 # set timezone

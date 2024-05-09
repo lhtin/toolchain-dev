@@ -14,4 +14,14 @@
 ssh docker@localhost -p 2222
 # or
 sshpass -p 1 ssh docker@localhost -p 2222
+
+
+# ssh config
+
+Host docker
+  HostName localhost
+  User docker
+  Port 2222
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
 ```

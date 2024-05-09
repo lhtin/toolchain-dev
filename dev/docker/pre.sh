@@ -36,11 +36,11 @@ sed -i '3s/^/export PATH=\$HOME\/apps\/bin\:\$PATH\n/' home/.zshrc
 sed -i '1 i ZSH_DISABLE_COMPFIX=true' home/.zshrc
 
 # others projects
-unzip -o common/map.zip
-mv map home/map
+#unzip -o common/map.zip
+#mv map home/map
 
-unzip -o common/riscv-perf-model.zip
-mv riscv-perf-model home/riscv-perf-model
+#unzip -o common/riscv-perf-model.zip
+#mv riscv-perf-model home/riscv-perf-model
 
 #if [ ! -f qemu-8.2.1.tar.xz ]
 #then
